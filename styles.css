@@ -1,6 +1,6 @@
 :root {
     --primary-color: #0d1117;
-    --secondary-color: rgb(196, 196, 196);
+    --secondary-color: rgb(139, 139, 139);
 }
 
 
@@ -8,6 +8,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family:'Courier New', Courier, monospace;
 }
 
 body {
@@ -35,25 +36,39 @@ main {
 }
 
 #display {
-    background-color: rgb(221, 221, 221);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-color);
     height: 100px;
     width: 360px;
     margin-bottom: 4px;
     border-radius: 5px;
 }
 
-#buttons-commands {
+#display > div {
+    height: 90%;
+    width: 96%;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    color: whitesmoke;
+    padding: 10px;
+    font-size: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#buttons-container {
     display: grid;
     grid-template-columns: repeat(4,1fr);
     width: auto;
     gap: 1px;
 }
 
-#buttons-commands > button {
+#buttons-container > button {
     height: 120px;
     width: 90px;
     font-size: 2.5rem;
     border-radius: 5px;
 }
-
-
