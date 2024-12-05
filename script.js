@@ -12,15 +12,15 @@ function displayClickedNumber(numberButton) {
 }
 
 function setOperation(operatorButton) {
-    result = +digits;
+    result = +displayContainer.textContent || +digits;
     operation = operatorButton.textContent;
     displayContainer.textContent = '';
     digits = '';
 }
 
 function evaluate() {
-    digits = displayContainer.textContent;
-    currentDigit = +digits;
+    currentDigit = +displayContainer.textContent;
+    //digits = '';
     switch (operation) {
         case '+':
             result += currentDigit;
@@ -41,6 +41,7 @@ const listOfOperatorButtons = document.querySelectorAll('.operator');
 const equalButton = document.querySelector('#op-equal');
 const clearButton = document.querySelector('#op-clear');
 
+// global variables 
 let digits = ''; 
 let result = 0;
 let currentDigit = 0;
@@ -67,9 +68,12 @@ arrayOfOperatorButtons.forEach((operator) => {
     operator.addEventListener('click', (event) => {
         setOperation(event.target);
     });
+
 });
 
 equalButton.addEventListener('click', evaluate);
+
+// clear function resets all the variables and the display
 clearButton.addEventListener('click', () => {
     displayContainer.textContent = '';
     digits = '';
