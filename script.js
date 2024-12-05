@@ -26,7 +26,18 @@ function evaluate() {
             result += currentDigit;
             displayContainer.textContent = result;
             break;
-    
+        case '-':
+            result -= currentDigit;
+            displayContainer.textContent = result;
+            break;
+        case '*':
+            result *= currentDigit;
+            displayContainer.textContent = result;
+            break;
+        case '/':
+            result /= currentDigit;
+            displayContainer.textContent = result;
+            break;
         default:
             break;
     }
