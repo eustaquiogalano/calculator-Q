@@ -25,31 +25,42 @@ function setOperation(operatorButton) {
     digits = '';
 }
 
+function addition() {
+    result += currentDigit;
+}
+
+function subtraction() {
+    result -= currentDigit;
+}
+function multiplication() {
+    result *= currentDigit;
+}
+
+function division() {
+    result /= currentDigit;
+}
+
 function evaluate() {
     // get the number at the display and convert to number
     currentDigit = +displayContainer.textContent;
 
-    //digits = '';
     switch (operation) {
         case '+':
-            result += currentDigit;
-            displayContainer.textContent = result;
+            addition();
             break;
         case '-':
-            result -= currentDigit;
-            displayContainer.textContent = result;
+            subtraction();
             break;
         case '*':
-            result *= currentDigit;
-            displayContainer.textContent = result;
+            multiplication();
             break;
         case '/':
-            result /= currentDigit;
-            displayContainer.textContent = result;
+            division();
             break;
         default:
             break;
     }
+    displayContainer.textContent = result;
 }
 
 // START
