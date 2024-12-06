@@ -12,14 +12,23 @@ function displayClickedNumber(numberButton) {
 }
 
 function setOperation(operatorButton) {
+    // get the display and set as value of result if none use digits;
     result = +displayContainer.textContent || +digits;
+
+    // set the operation variable based on what button was clicked
     operation = operatorButton.textContent;
+
+    // reset the display to blank for another input
     displayContainer.textContent = '';
+
+    // reset the digit 
     digits = '';
 }
 
 function evaluate() {
+    // get the number at the display and convert to number
     currentDigit = +displayContainer.textContent;
+
     //digits = '';
     switch (operation) {
         case '+':
