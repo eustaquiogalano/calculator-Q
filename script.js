@@ -1,7 +1,4 @@
 function displayClickedNumber(numberButton) {
-    
-    // foe debugging purposes
-    console.log("here" , numberButton);
 
     // accumulation of multiple clicked numbers
     digits += numberButton.textContent;
@@ -63,6 +60,15 @@ function evaluate() {
     displayContainer.textContent = result;
 }
 
+// for "DEL" button
+function deleteChar() {
+    let separated = digits.split('');  // split the string into array
+    separated.splice(-1, 1);  // delete the last character
+    digits = separated.join('');  // join to become string again
+    displayContainer.textContent = digits;  // display the output 
+    console.log(digits); // for debugging purpose
+}
+
 // START
 
 // get all the necessary elements in html 
@@ -71,6 +77,7 @@ const listOfNumberButtons = document.querySelectorAll('.number');
 const listOfOperatorButtons = document.querySelectorAll('.operator');
 const equalButton = document.querySelector('#op-equal');
 const clearButton = document.querySelector('#op-clear');
+const deleteButton = document.querySelector('#op-delete');
 
 // global variables 
 let digits = ''; 
@@ -111,3 +118,5 @@ clearButton.addEventListener('click', () => {
     currentDigit = 0;
     result = 0;
 });
+
+deleteButton.addEventListener('click', deleteChar);
