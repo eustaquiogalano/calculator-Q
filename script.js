@@ -1,73 +1,4 @@
-function displayClickedNumber(numberButton) {
-
-    // accumulation of multiple clicked numbers
-    digits += numberButton.textContent;
-
-    // display the clicked number
-    displayContainer.textContent = digits;
-
-}
-
-function setOperation(operatorButton) {
-    // get the display and set as value of result if none use digits;
-    result = +displayContainer.textContent || +digits;
-
-    // set the operation variable based on what button was clicked
-    operation = operatorButton.textContent;
-
-    // reset the display to blank for another input
-    displayContainer.textContent = '';
-
-    // reset the digit 
-    digits = '';
-}
-
-function addition() {
-    result += currentDigit;
-}
-
-function subtraction() {
-    result -= currentDigit;
-}
-function multiplication() {
-    result *= currentDigit;
-}
-
-function division() {
-    result /= currentDigit;
-}
-
-function evaluate() {
-    // get the number at the display and convert to number
-    currentDigit = +displayContainer.textContent;
-
-    switch (operation) {
-        case '+':
-            addition();
-            break;
-        case '-':
-            subtraction();
-            break;
-        case '*':
-            multiplication();
-            break;
-        case '/':
-            division();
-            break;
-        default:
-            break;
-    }
-    displayContainer.textContent = result;
-}
-
-// for "DEL" button
-function deleteChar() {
-    let separated = digits.split('');  // split the string into array
-    separated.splice(-1, 1);  // delete the last character
-    digits = separated.join('');  // join to become string again
-    displayContainer.textContent = digits;  // display the output 
-    console.log(digits); // for debugging purpose
-}
+import {default as mathQ} from "./math_module_Q.js"
 
 // START
 
@@ -92,7 +23,7 @@ arrayOfNumberButtons.forEach((number) => {
 
     // each item is a button element in html
     number.addEventListener('click', (event) => {   
-        displayClickedNumber(event.target);
+        digits = mathQ.displayClickedNumber(event.target, digits, displayContainer);
     });
 
 });
@@ -104,12 +35,17 @@ arrayOfOperatorButtons.forEach((operator) => {
     
     // each array element is a button element in html
     operator.addEventListener('click', (event) => {
-        setOperation(event.target);
+        [result, operation] = mathQ.setOperation(event.target, displayContainer, result, operation, digits);
+        console.log(`Result: ${result}`);
+        console.log(`Operation${operation}`);
+        digits = '';
     });
 
 });
 
-equalButton.addEventListener('click', evaluate);
+equalButton.addEventListener('click', () => {
+    result = mathQ.evaluate(operation, currentDigit, displayContainer, result);
+});
 
 // clear function resets all the variables and the display
 clearButton.addEventListener('click', () => {
@@ -119,4 +55,6 @@ clearButton.addEventListener('click', () => {
     result = 0;
 });
 
-deleteButton.addEventListener('click', deleteChar);
+deleteButton.addEventListener('click', () => {
+    mathQ.deleteChar(digits, displayContainer);
+});
