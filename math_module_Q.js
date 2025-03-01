@@ -75,6 +75,7 @@ export default (function () {
         digits = separated.join('');  // join to become string again
         displayContainer.textContent = digits;  // display the output 
         console.log(digits); // for debugging purpose
+        return digits;
     }
 
     return {

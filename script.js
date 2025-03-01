@@ -56,5 +56,5 @@ clearButton.addEventListener('click', () => {
 });
 
 deleteButton.addEventListener('click', () => {
-    mathQ.deleteChar(digits, displayContainer);
+    digits = mathQ.deleteChar(digits, displayContainer);
 });
